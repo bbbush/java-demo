@@ -39,6 +39,10 @@ public final class Helper {
         tasks.forEach(ForkJoinTask::join);
     }
 
+    public static void runForkJoinTasksWithCompletableFuture(Node node, Function<Node, Collection<Node>> expand, ForkJoinPool fjPool) {
+        fjPool.submit(() -> runThreadPoolTasksRecursive(node, expand, fjPool)).join();
+    }
+
     public static void runThreadPoolTasks(Node node, Function<Node, Collection<Node>> expand, ExecutorService executorService) {
         CompletableFuture.runAsync(() -> runThreadPoolTasksRecursive(node, expand, executorService), executorService).join();
     }

@@ -49,7 +49,16 @@ class HelperTest {
         Helper.Node node = new Helper.Node();
         Helper.runThreadPoolTasks(node, Helper.makeExpandFunction(3), newFixedThreadPool(16));
         List<Helper.Node> list = Helper.flatten(node).collect(toList());
-        // will block
+        // will block. All tasks are submitted and waited for
+        assertThat(list.size()).isEqualTo(16);
+    }
+
+    @Test
+    public void shouldExpandNodeWithForkJoinPoolAsExecutorService() {
+        Helper.Node node = new Helper.Node();
+        Helper.runForkJoinTasksWithCompletableFuture(node, Helper.makeExpandFunction(3), new ForkJoinPool(8));
+        List<Helper.Node> list = Helper.flatten(node).collect(toList());
+        // behavior is same as newWorkStealingPool, seen 7s~10s. Why stealing did not happen more?
         assertThat(list.size()).isEqualTo(16);
     }
 
