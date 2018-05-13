@@ -10,13 +10,22 @@
     <packaging>pom</packaging>
 
     <properties>
+        <!-- compiler options -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <!--plugin versions-->
+        <!--library versions-->
         <kotlin.version>1.2.41</kotlin.version>
         <assertj.version>3.9.1</assertj.version>
         <junit-jupiter.version>5.2.0</junit-jupiter.version>
+        <mockito.version>2.18.3</mockito.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <logback.version>1.2.3</logback.version>
     </properties>
 
     <modules>
         <module>kotlin-in-maven</module>
+        <module>use-newWorkStealingPool</module>
     </modules>
 
     <dependencies>
@@ -31,6 +40,27 @@
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit-jupiter.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
         </dependency>
     </dependencies>
 
